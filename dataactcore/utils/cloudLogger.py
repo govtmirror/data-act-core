@@ -1,5 +1,6 @@
 import logging
 import logstash
+from logstash import LogstashHandler
 import os
 import json
 import inspect
