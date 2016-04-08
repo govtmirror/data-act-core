@@ -7,6 +7,7 @@ from dataactcore.config import CONFIG_DB
 class ErrorInterface(BaseInterface):
     """Manages communication with error database."""
     dbName = CONFIG_DB['error_db_name']
+    dbConfig = CONFIG_DB
     Session = None
     engine = None
     session = None
@@ -83,6 +84,21 @@ class ErrorInterface(BaseInterface):
             # For each row that matches jobId, add the number of that type of error
             numErrors += result.occurrences
         return numErrors
+
+    def sumNumberOfErrorsForJobList(self,jobIdList):
+        """ Add number of errors for all jobs in list """
+        errorSum = 0
+        for jobId in jobIdList:
+            jobErrors = self.checkNumberOfErrorsByJobId(jobId)
+            try:
+                errorSum += int(jobErrors)
+            except TypeError:
+                # If jobRows is None or empty string, just don't add it, otherwise reraise
+                if jobErrors is None or jobErrors == "":
+                    continue
+                else:
+                    raise
+        return errorSum
 
     def getMissingHeadersByJobId(self, jobId):
         return self.getFileStatusByJobId(jobId).headers_missing
