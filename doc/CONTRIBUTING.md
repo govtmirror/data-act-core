@@ -102,6 +102,7 @@ If you're not using AWS tools when running the broker, you'll need to install a 
 1. Install version 7+ of the [Java Development Kit (jdk)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html "download Java Development Kit").
 2. Follow [Amazon's instructions](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.DynamoDBLocal.html#Tools.DynamoDBLocal.DownloadingAndRunning "running DynamoDB on your computer") for downloading and running local DynamoDB. You should be able to start the local DynamoDB using the example command provided by Amazon, without overriding any of the default options.
 3. Install [Nmap](https://nmap.org/book/install.html)
+
 Don't worry about setting DynamoDB endpoints or creating tables: the broker's code handles this.
 
 **Note:** The local version of DynamoDB is not recommend for production.
